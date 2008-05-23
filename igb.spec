@@ -35,8 +35,8 @@ This package contains the Linux driver for the Intel(R) PRO/1000
 adapters with 82575 chipset.
 
 %description -l pl.UTF-8
-Ten pakiet zawiera sterownik dla Linuksa do kart sieciowych
-z rodziny Intel(R) PRO/1000 opartych o układ 82575.
+Ten pakiet zawiera sterownik dla Linuksa do kart sieciowych z rodziny
+Intel(R) PRO/1000 opartych o układ 82575.
 
 %package -n kernel%{_alt_kernel}-net-igb
 Summary:	Intel(R) PRO/1000 driver for Linux
@@ -54,8 +54,8 @@ This package contains the Linux driver for the Intel(R) PRO/1000
 adapters with 82575 chipset.
 
 %description -n kernel%{_alt_kernel}-net-igb -l pl.UTF-8
-Ten pakiet zawiera sterownik dla Linuksa do kart sieciowych
-z rodziny Intel(R) PRO/1000 opartych o układ 82575.
+Ten pakiet zawiera sterownik dla Linuksa do kart sieciowych z rodziny
+Intel(R) PRO/1000 opartych o układ 82575.
 
 %prep
 %setup -q -n %{pname}-%{version}
