@@ -61,8 +61,8 @@ Intel(R) PRO/1000 opartych o układy 82575EB/GB lub 82576.
 %setup -q -n %{pname}-%{version}
 cat > src/Makefile <<'EOF'
 obj-m := igb.o
-igb-objs := e1000_82575.o e1000_mac.o e1000_nvm.o e1000_phy.o e1000_manage.o \
-kcompat.o e1000_api.o igb_main.o igb_param.o igb_ethtool.o
+igb-objs := igb_main.o e1000_82575.o e1000_mac.o e1000_nvm.o e1000_phy.o \
+e1000_manage.o igb_param.o igb_ethtool.o kcompat.o e1000_api.o
 
 EXTRA_CFLAGS=-DDRIVER_IGB
 EOF
