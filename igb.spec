@@ -14,17 +14,17 @@
 %undefine	with_userspace
 %endif
 
-%define		rel	7
+%define		rel	1
 %define		pname	igb
 Summary:	Intel(R) PRO/1000 driver for Linux
 Summary(pl.UTF-8):	Sterownik do karty Intel(R) PRO/1000
 Name:		%{pname}%{_alt_kernel}
-Version:	2.4.8
+Version:	2.4.12
 Release:	%{rel}
 License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/e1000/%{pname}-%{version}.tar.gz
-# Source0-md5:	5271bf36e4ac0dbe82f6bed2768a6f4b
+# Source0-md5:	32d898732dce0f0ea4d94f068ab59608
 URL:		http://sourceforge.net/projects/e1000/
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRequires:	rpmbuild(macros) >= 1.379
@@ -75,12 +75,16 @@ EOF
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_mandir}/man7
+
 %install_kernel_modules -m src/%{pname} -d kernel/drivers/net -n %{pname} -s current
 # blacklist kernel module
 cat > $RPM_BUILD_ROOT/etc/modprobe.d/%{_kernel_ver}/%{pname}.conf <<'EOF'
 blacklist igb
 alias igb igb-current
 EOF
+
+cp -a igb.7 $RPM_BUILD_ROOT%{_mandir}/man7
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -93,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files	-n kernel%{_alt_kernel}-net-igb
 %defattr(644,root,root,755)
-%doc igb.7 README
-/etc/modprobe.d/%{_kernel_ver}/%{pname}.conf
+%doc README
+%config(noreplace,missingok) %verify(not md5 mtime size) /etc/modprobe.d/%{_kernel_ver}/%{pname}.conf
 /lib/modules/%{_kernel_ver}/kernel/drivers/net/%{pname}*.ko*
+%{_mandir}/man7/igb.7*
