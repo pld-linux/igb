@@ -66,7 +66,7 @@ Release:	%{rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
-Requires:   kernel%{_alt_kernel}-smp(vermagic) = %{_kernel_ver}}
+Requires:   kernel%{_alt_kernel}-smp(vermagic) = %{_kernel_ver}
 %endif
 
 %description -n kernel%{_alt_kernel}-smp-net-igb
