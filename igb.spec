@@ -1,12 +1,10 @@
 # Conditional build:
-%bcond_without  dist_kernel     # allow non-distribution kernel
-%bcond_without  kernel          # don't build kernel modules
-%bcond_without  smp             # don't build SMP module
-%bcond_without  up              # don't build UP module
-%bcond_with     verbose         # verbose build (V=1)
+%bcond_without	dist_kernel	# allow non-distribution kernel
+%bcond_without	kernel		# don't build kernel modules
+%bcond_with	verbose		# verbose build (V=1)
 
 %ifarch sparc
-%undefine       with_smp
+%undefine	with_smp
 %endif
 
 %if %{without kernel}
@@ -28,7 +26,7 @@ Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/e1000/%{pname}-%{version}.tar.gz
 # Source0-md5:	32d898732dce0f0ea4d94f068ab59608
 URL:		http://sourceforge.net/projects/e1000/
-%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.10}
+%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRequires:	rpmbuild(macros) >= 1.379
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,25 +54,6 @@ This package contains the Linux driver for the Intel(R) PRO/1000
 adapters with 82575EB/GB or 82576 chipsets.
 
 %description -n kernel%{_alt_kernel}-net-igb -l pl.UTF-8
-Ten pakiet zawiera sterownik dla Linuksa do kart sieciowych z rodziny
-Intel(R) PRO/1000 opartych o układy 82575EB/GB lub 82576.
-
-%package -n kernel%{_alt_kernel}-smp-net-igb
-Summary:	Intel(R) PRO/1000 driver for Linux SMP
-Summary(pl.UTF-8):	Sterownik do karty Intel(R) PRO/1000
-Release:	%{rel}@%{_kernel_ver_str}
-Group:		Base/Kernel
-Requires(post,postun):	/sbin/depmod
-%if %{with dist_kernel}
-%requires_releq_kernel
-Requires(postun):	%releq_kernel
-%endif
-
-%description -n kernel%{_alt_kernel}-smp-net-igb
-This package contains the Linux driver for the Intel(R) PRO/1000
-adapters with 82575EB/GB or 82576 chipsets.
-
-%description -n kernel%{_alt_kernel}-smp-net-igb -l pl.UTF-8
 Ten pakiet zawiera sterownik dla Linuksa do kart sieciowych z rodziny
 Intel(R) PRO/1000 opartych o układy 82575EB/GB lub 82576.
 
@@ -113,29 +92,12 @@ rm -rf $RPM_BUILD_ROOT
 %post	-n kernel%{_alt_kernel}-net-igb
 %depmod %{_kernel_ver}
 
-%post	-n kernel%{_alt_kernel}-smp-net-igb
-%depmod %{_kernel_ver}
-
 %postun	-n kernel%{_alt_kernel}-net-igb
 %depmod %{_kernel_ver}
 
-%postun	-n kernel%{_alt_kernel}-smp-net-igb
-%depmod %{_kernel_ver}
-
-%if %{with up}
 %files	-n kernel%{_alt_kernel}-net-igb
 %defattr(644,root,root,755)
 %doc README
 %config(noreplace,missingok) %verify(not md5 mtime size) /etc/modprobe.d/%{_kernel_ver}/%{pname}.conf
 /lib/modules/%{_kernel_ver}/kernel/drivers/net/%{pname}*.ko*
 %{_mandir}/man7/igb.7*
-%endif
-
-%if %{with smp}
-%files	-n kernel%{_alt_kernel}-smp-net-igb
-%defattr(644,root,root,755)
-%doc README
-%config(noreplace,missingok) %verify(not md5 mtime size) /etc/modprobe.d/%{_kernel_ver}/%{pname}.conf
-/lib/modules/%{_kernel_ver}smp/kernel/drivers/net/%{pname}*.ko*
-%{_mandir}/man7/igb.7*
-%endif
