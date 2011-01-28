@@ -66,8 +66,7 @@ Release:	%{rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
-%requires_releq_kernel
-Requires(postun):	%releq_kernel
+Requires:   kernel%{_alt_kernel}-smp(vermagic) = %{_kernel_ver}}
 %endif
 
 %description -n kernel%{_alt_kernel}-smp-net-igb
@@ -114,13 +113,13 @@ rm -rf $RPM_BUILD_ROOT
 %depmod %{_kernel_ver}
 
 %post	-n kernel%{_alt_kernel}-smp-net-igb
-%depmod %{_kernel_ver}
+%depmod %{_kernel_ver}smp
 
 %postun	-n kernel%{_alt_kernel}-net-igb
 %depmod %{_kernel_ver}
 
 %postun	-n kernel%{_alt_kernel}-smp-net-igb
-%depmod %{_kernel_ver}
+%depmod %{_kernel_ver}smp
 
 %if %{with up}
 %files	-n kernel%{_alt_kernel}-net-igb
