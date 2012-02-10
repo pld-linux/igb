@@ -23,7 +23,7 @@ Version:	3.3.6
 Release:	%{rel}
 License:	GPL v2
 Group:		Base/Kernel
-Source0:	http://dl.sourceforge.net/e1000/%{pname}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/e1000/%{pname}-%{version}.tar.gz
 # Source0-md5:	b9267beb43f41d364f73b4d5b9040f1e
 URL:		http://sourceforge.net/projects/e1000/
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
