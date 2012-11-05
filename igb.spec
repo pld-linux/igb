@@ -14,7 +14,7 @@
 %undefine	with_userspace
 %endif
 
-%define		rel	17
+%define		rel	18
 %define		pname	igb
 Summary:	Intel(R) PRO/1000 driver for Linux
 Summary(pl.UTF-8):	Sterownik do karty Intel(R) PRO/1000
