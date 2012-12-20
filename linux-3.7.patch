@@ -1,0 +1,11 @@
+--- igb-4.0.17/src/igb_main.c~	2012-10-08 17:37:31.000000000 +0200
++++ igb-4.0.17/src/igb_main.c	2012-12-20 13:47:16.403675607 +0100
+@@ -7833,7 +7833,7 @@
+ 		goto skip_bad_vf_detection;
+ 
+ 	bdev = pdev->bus->self;
+-	while (bdev && (bdev->pcie_type != PCI_EXP_TYPE_ROOT_PORT))
++	while (bdev && (pci_pcie_type(bdev) != PCI_EXP_TYPE_ROOT_PORT))
+ 		bdev = bdev->bus->self;
+ 
+ 	if (!bdev)
