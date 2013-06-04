@@ -63,8 +63,9 @@ cat > src/Makefile <<'EOF'
 obj-m := igb.o
 igb-objs := igb_main.o e1000_82575.o e1000_i210.o e1000_mac.o e1000_nvm.o e1000_phy.o \
 	e1000_manage.o igb_param.o igb_ethtool.o kcompat.o e1000_api.o \
-	e1000_mbx.o igb_vmdq.o igb_sysfs.o igb_procfs.o igb_ptp.o
+	e1000_mbx.o igb_vmdq.o igb_procfs.o igb_hwmon.o igb_ptp.o
 
+EXTRA_CFLAGS += -DIGB_PTP
 EXTRA_CFLAGS += -DDRIVER_IGB
 EXTRA_CFLAGS += -DDRIVER_NAME=igb
 EXTRA_CFLAGS += -DDRIVER_NAME_CAPS=IGB
