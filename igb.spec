@@ -21,7 +21,7 @@ exit 1
 
 %define		_duplicate_files_terminate_build	0
 
-%define		rel	2
+%define		rel	3
 %define		pname	igb
 Summary:	Intel(R) PRO/1000 driver for Linux
 Summary(pl.UTF-8):	Sterownik do karty Intel(R) PRO/1000
