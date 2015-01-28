@@ -11,12 +11,12 @@
 Summary:	Intel(R) PRO/1000 driver for Linux
 Summary(pl.UTF-8):	Sterownik do karty Intel(R) PRO/1000
 Name:		%{pname}%{_alt_kernel}
-Version:	5.2.9.4
+Version:	5.2.15
 Release:	%{rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://downloads.sourceforge.net/e1000/%{pname}-%{version}.tar.gz
-# Source0-md5:	b59b8d5ae7d8f53f3481004051fb7b87
+# Source0-md5:	0dc316f4debdcabfb55daea93f3d1bb1
 URL:		http://sourceforge.net/projects/e1000/
 %{expand:%buildrequires_kernel kernel%%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRequires:	rpm-build-macros >= 1.701
