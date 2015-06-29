@@ -50,7 +50,7 @@
  	/* Initialize the clock and overflow work for devices that need it. */
  	if ((hw->mac.type == e1000_i210) || (hw->mac.type == e1000_i211)) {
 -		struct timespec ts = ktime_to_timespec(ktime_get_real());
-+		struct timespec ts64 = ktime_to_timespec64(ktime_get_real());
++		struct timespec64 ts = ktime_to_timespec64(ktime_get_real());
  
  		igb_ptp_settime64_i210(&adapter->ptp_caps, &ts);
  	} else {
