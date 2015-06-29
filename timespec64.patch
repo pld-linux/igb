@@ -1,0 +1,56 @@
+--- igb-5.3.2/src/igb_ptp.c~	2015-05-26 23:59:51.000000000 +0200
++++ igb-5.3.2/src/igb_ptp.c	2015-06-29 08:05:18.930401431 +0200
+@@ -327,7 +327,7 @@
+ }
+ 
+ static int igb_ptp_gettime64_82576(struct ptp_clock_info *ptp,
+-				 struct timespec *ts64)
++				 struct timespec64 *ts64)
+ {
+ 	struct igb_adapter *igb = container_of(ptp, struct igb_adapter,
+ 					       ptp_caps);
+@@ -350,7 +350,7 @@
+ }
+ 
+ static int igb_ptp_gettime64_i210(struct ptp_clock_info *ptp,
+-				struct timespec *ts64)
++				struct timespec64 *ts64)
+ {
+ 	struct igb_adapter *igb = container_of(ptp, struct igb_adapter,
+ 					       ptp_caps);
+@@ -369,7 +369,7 @@
+ 
+ #ifdef HAVE_PTP_CLOCK_INFO_GETTIME64
+ static int igb_ptp_settime64_82576(struct ptp_clock_info *ptp,
+-				 const struct timespec *ts64)
++				 const struct timespec64 *ts64)
+ {
+ 	struct igb_adapter *igb = container_of(ptp, struct igb_adapter,
+ 					       ptp_caps);
+@@ -392,7 +392,7 @@
+ 
+ #endif
+ static int igb_ptp_settime64_i210(struct ptp_clock_info *ptp,
+-				const struct timespec *ts64)
++				const struct timespec64 *ts64)
+ {
+ 	struct igb_adapter *igb = container_of(ptp, struct igb_adapter,
+ 					       ptp_caps);
+@@ -411,7 +411,7 @@
+ 
+ #ifndef HAVE_PTP_CLOCK_INFO_GETTIME64
+ static int igb_ptp_gettime_82576(struct ptp_clock_info *ptp,
+-				 struct timespec *ts)
++				 struct timespec64 *ts)
+ {
+ 	struct timespec64 ts64;
+ 	int err;
+@@ -426,7 +426,7 @@
+ }
+ 
+ static int igb_ptp_gettime_i210(struct ptp_clock_info *ptp,
+-				struct timespec *ts)
++				struct timespec64 *ts)
+ {
+ 	struct timespec64 ts64;
+ 	int err;
