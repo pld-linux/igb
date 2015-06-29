@@ -36,3 +36,30 @@
  {
  	struct igb_adapter *igb = container_of(ptp, struct igb_adapter,
  					       ptp_caps);
+@@ -522,7 +522,7 @@
+ {
+ 	struct igb_adapter *igb =
+ 		container_of(work, struct igb_adapter, ptp_overflow_work.work);
+-	struct timespec ts;
++	struct timespec64 ts;
+ 
+ 	igb_ptp_gettime64_82576(&igb->ptp_caps, &ts);
+ 
+@@ -961,7 +961,7 @@
+ 
+ 	/* Initialize the clock and overflow work for devices that need it. */
+ 	if ((hw->mac.type == e1000_i210) || (hw->mac.type == e1000_i211)) {
+-		struct timespec ts = ktime_to_timespec(ktime_get_real());
++		struct timespec ts64 = ktime_to_timespec64(ktime_get_real());
+ 
+ 		igb_ptp_settime64_i210(&adapter->ptp_caps, &ts);
+ 	} else {
+@@ -1073,7 +1073,7 @@
+ 
+ 	/* Re-initialize the timer. */
+ 	if ((hw->mac.type == e1000_i210) || (hw->mac.type == e1000_i211)) {
+-		struct timespec ts = ktime_to_timespec(ktime_get_real());
++		struct timespec64 ts = ktime_to_timespec64(ktime_get_real());
+ 
+ 		igb_ptp_settime64_i210(&adapter->ptp_caps, &ts);
+ 	} else {
