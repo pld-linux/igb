@@ -4,7 +4,7 @@
  }
  
  static int igb_ptp_gettime64_82576(struct ptp_clock_info *ptp,
-+#if ( LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0) )
++#if ( LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0) )
  				 struct timespec *ts64)
 +#else
 +				 struct timespec64 *ts64)
@@ -16,7 +16,7 @@
  }
  
  static int igb_ptp_gettime64_i210(struct ptp_clock_info *ptp,
-+#if ( LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0) )
++#if ( LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0) )
  				struct timespec *ts64)
 +#else
 +				struct timespec64 *ts64)
@@ -28,7 +28,7 @@
  
  #ifdef HAVE_PTP_CLOCK_INFO_GETTIME64
  static int igb_ptp_settime64_82576(struct ptp_clock_info *ptp,
-+#if ( LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0) )
++#if ( LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0) )
  				 const struct timespec *ts64)
 +#else
 +				 const struct timespec64 *ts64)
@@ -40,7 +40,7 @@
  
  #endif
  static int igb_ptp_settime64_i210(struct ptp_clock_info *ptp,
-+#if ( LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0) )
++#if ( LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0) )
  				const struct timespec *ts64)
 +#else
 +				const struct timespec64 *ts64)
@@ -52,7 +52,7 @@
  {
  	struct igb_adapter *igb =
  		container_of(work, struct igb_adapter, ptp_overflow_work.work);
-+#if ( LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0) )
++#if ( LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0) )
  	struct timespec ts;
 +#else
 +	struct timespec64 ts;
@@ -64,7 +64,7 @@
  
  	/* Initialize the clock and overflow work for devices that need it. */
  	if ((hw->mac.type == e1000_i210) || (hw->mac.type == e1000_i211)) {
-+#if ( LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0) )
++#if ( LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0) )
  		struct timespec ts = ktime_to_timespec(ktime_get_real());
 +#else
 +		struct timespec64 ts = ktime_to_timespec64(ktime_get_real());
@@ -76,7 +76,7 @@
  
  	/* Re-initialize the timer. */
  	if ((hw->mac.type == e1000_i210) || (hw->mac.type == e1000_i211)) {
-+#if ( LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0) )
++#if ( LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0) )
  		struct timespec ts = ktime_to_timespec(ktime_get_real());
 +#else
 +		struct timespec64 ts = ktime_to_timespec64(ktime_get_real());
