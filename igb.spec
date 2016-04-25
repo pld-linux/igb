@@ -17,6 +17,7 @@ License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://downloads.sourceforge.net/e1000/%{pname}-%{version}.tar.gz
 # Source0-md5:	6c0d7dfdb161128da7c039fc83bbdba0
+Patch0:		clocksource.patch
 URL:		http://sourceforge.net/projects/e1000/
 %{expand:%buildrequires_kernel kernel%%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRequires:	rpm-build-macros >= 1.701
@@ -80,6 +81,7 @@ EOF\
 
 %prep
 %setup -q -n %{pname}-%{version}
+%patch0 -p1
 
 cat > src/Makefile <<'EOF'
 obj-m := igb.o

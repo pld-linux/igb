@@ -1,0 +1,26 @@
+--- igb-5.3.4.4/src/igb.h~	2016-02-26 01:48:39.000000000 +0100
++++ igb-5.3.4.4/src/igb.h	2016-04-25 09:05:40.372457551 +0200
+@@ -72,9 +72,8 @@
+ #ifdef HAVE_PTP_1588_CLOCK
+ #ifdef HAVE_INCLUDE_LINUX_TIMECOUNTER_H
+ #include <linux/timecounter.h>
+-#else
+-#include <linux/clocksource.h>
+ #endif /* HAVE_INCLUDE_TIMECOUNTER_H */
++#include <linux/clocksource.h>
+ #include <linux/net_tstamp.h>
+ #include <linux/ptp_clock_kernel.h>
+ #endif /* HAVE_PTP_1588_CLOCK */
+--- igb-5.3.4.4/src/kcompat.h~	2016-02-26 01:48:39.000000000 +0100
++++ igb-5.3.4.4/src/kcompat.h	2016-04-25 09:05:53.839075764 +0200
+@@ -4720,9 +4720,8 @@
+ #ifndef NO_PTP_SUPPORT
+ #ifdef HAVE_INCLUDE_LINUX_TIMECOUNTER_H
+ #include <linux/timecounter.h>
+-#else
+-#include <linux/clocksource.h>
+ #endif
++#include <linux/clocksource.h>
+ static inline void __kc_timecounter_adjtime(struct timecounter *tc, s64 delta)
+ {
+ 	tc->nsec += delta;
