@@ -6,7 +6,7 @@
 
 %define		_duplicate_files_terminate_build	0
 
-%define		rel	2
+%define		rel	3
 %define		pname	igb
 Summary:	Intel(R) PRO/1000 driver for Linux
 Summary(pl.UTF-8):	Sterownik do karty Intel(R) PRO/1000
@@ -20,7 +20,7 @@ Source0:	http://downloads.sourceforge.net/e1000/%{pname}-%{version}.tar.gz
 Patch0:		clocksource.patch
 URL:		http://sourceforge.net/projects/e1000/
 %{expand:%buildrequires_kernel kernel%%{_alt_kernel}-module-build >= 3:2.6.20.2}
-BuildRequires:	rpm-build-macros >= 1.701
+BuildRequires:	rpmbuild(macros) >= 1.701
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
