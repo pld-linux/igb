@@ -81,7 +81,7 @@ EOF\
 
 %prep
 %setup -q -n %{pname}-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 cat > src/Makefile <<'EOF'
 obj-m := igb.o
